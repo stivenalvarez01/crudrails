@@ -1,0 +1,36 @@
+<h1>Agregar Productos</h1>
+<%= form_with(model: @producto, url: productos_path, method: :post) do |form| %>
+  <input type="text" name="producto[nombre]" placeholder="Nombre del producto">
+  <input type="number" name="producto[precio]" placeholder="Precio del producto">
+  <input type="text" name="producto[descripcion]" placeholder="Descripción del producto">
+  <input type="submit" value="Guardar">
+<% end %>
+
+<hr>
+
+<h1>Listado de Productos</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @productos.each do |producto| %>
+      <tr>
+        <td><%= producto.nombre %></td>
+        <td><%= producto.precio %></td>
+        <td><%= producto.descripcion %></td>
+        <td>
+          <%= link_to 'Editar', edit_producto_path(producto), class: 'btn btn-primary' %>
+          <%= form_with(model: producto, method: :delete, url: producto_path(producto)) do |form| %>
+            <%= form.submit 'Eliminar', data: { confirm: '¿Estás seguro de que deseas eliminar este producto?' }, class: 'btn btn-danger' %>
+          <% end %>
+        </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+

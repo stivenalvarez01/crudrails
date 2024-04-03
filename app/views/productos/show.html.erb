@@ -1,0 +1,8 @@
+<h1><%= @producto.nombre %></h1>
+
+<p class="notice"><%= notice %></p>
+<p><strong>Descripción:</strong> <%= @producto.descripcion %></p>
+<p><strong>Precio:</strong> <%= @producto.precio %></p>
+
+<%= link_to 'Editar', edit_producto_path(@producto) %>
+<%= link_to 'Eliminar', @producto, method: :delete, data: { confirm: '¿Estás seguro?' } %>
